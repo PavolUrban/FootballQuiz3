@@ -1,10 +1,10 @@
 package com.sample.multiplechoicequiz;
 
-// This file contains questions from QuestionBank
+
+
 
 public class QuestionBank {
 
-    // array of questions
     private String textQuestions [] = {
             "1. Kto bol víťazom MS2010 v Juhoafrickej republike?",
             "2. Kto z týchto tímov sa nikdy nepredstavil na MS vo futbale?",
@@ -29,15 +29,16 @@ public class QuestionBank {
             "21. Kto vyhral Majstrovstvá sveta 1998 vo Francúzsku?",
             "22. Kto vyhral Majstrovstvá sveta 2002 v Japonsku a Južnej Kórei?",
             "23. Kto vyhral Majstrovstvá sveta 2006 v Nemecku?",
-            "24. Kto vyhral Majstrovstvá sveta 2014 v Brazílii?"
+            "24. Kto vyhral Majstrovstvá sveta 2014 v Brazílii?",
+            "25. Aký názov má tento štadión?",
+            "26. Aký názov má tento štadión?",
+            "27. Aký názov má tento štadión?",
+            "28. Kto je na obrázku?",
+            "29. Kto je na obrázku?"
+
 
 
     };
-
-    // array of multiple choices for each question
-
-
-
 
     private String multipleChoice [][] = {
             {"Španielsko", "Holandsko", "Brazília", "Nemecko"},
@@ -64,34 +65,37 @@ public class QuestionBank {
             {"Južná Kórea", "Brazília", "Nemecko", "Turecko"},
             {"Nemecko", "Portugalsko", "Argentína", "Taliansko"},
             {"Brazília", "Holandsko", "Nemecko", "Argentína"},
-            //{"", "", "", ""}
+            {"Bazaly", "Letná", "Pod Dubňom", "Dolíček"},
+            {"Old Trafford", "Anfield Road", "Stamford Bridge", "Wembley"},
+            {"San Siro", "Delle Alpi", "Signal Iduna Park", "Santiago Bernabeu"},
+            {"Diego Maradona","Pelé","Gary Lineker","Eric Cantona"},
+            {"Ronaldinho","Rivaldo","Ronaldo","Cristiano Ronaldo"}
 
     };
 
-    // array of correct answers - in the same order as array of questions
+
     private String mCorrectAnswers[] = {"Španielsko", "Guatemala", "Nottingham Forest", "Miroslav Klose","Fínsko","Uruguaj","Taliansko","Taliansko","Uruguaj",
             "Západné Nemecko","Brazília","Brazília", "Anglicko","Brazília","Západné Nemecko","Argentína","Taliansko", "Argentína","Nemecko","Brazília","Francúzsko",
-            "Brazília","Taliansko","Nemecko"};
+            "Brazília","Taliansko","Nemecko","Bazaly","Wembley","San Siro","Diego Maradona","Ronaldo"};
 
-    // method returns number of questions
+
     public int getLength(){
         return textQuestions.length;
     }
 
-    // method returns question from array textQuestions[] based on array index
+
     public String getQuestion(int a) {
         String question = textQuestions[a];
         return question;
     }
 
-    // method return a single multiple choice item for question based on array index,
-    // based on number of multiple choice item in the list - 1, 2, 3 or 4 as an argument
+
     public String getChoice(int index, int num) {
         String choice0 = multipleChoice[index][num-1];
         return choice0;
     }
 
-    //  method returns correct answer for the question based on array index
+
     public String getCorrectAnswer(int a) {
         String answer = mCorrectAnswers[a];
         return answer;

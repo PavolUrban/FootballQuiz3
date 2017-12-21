@@ -2,11 +2,14 @@ package com.sample.multiplechoicequiz;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +34,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button mButtonChoice3; // multiple choice 3 for mQuestionView
     private Button mButtonChoice4; // multiple choice 4 for mQuestionView
 
+    private ImageView imageView;
     private String mAnswer;  // correct answer for question in mQuestionView
     private int mScore = 0;  // current total score
      private Long elapsedSeconds = 0L;
@@ -42,6 +46,10 @@ public class QuizActivity extends AppCompatActivity {
     private Boolean soundsOn =true;
     private SharedPreferences mPrefs;
     private TimerTask tt;
+    Drawable[] images;
+
+    Resources resources;
+
 
 
 
@@ -67,8 +75,16 @@ public class QuizActivity extends AppCompatActivity {
         mButtonChoice4 = (Button) findViewById(R.id.choice4);
         timer = (TextView) findViewById(R.id.myTimer);
         mPrefs = getSharedPreferences("app", MODE_PRIVATE);
+        imageView = (ImageView) findViewById(R.id.questionImage);
 
+        resources = getResources();
 
+        images = new Drawable[30];
+        images[24] = resources.getDrawable(R.drawable.bazaly);
+        images[25]= resources.getDrawable(R.drawable.wembley);
+        images[26]= resources.getDrawable(R.drawable.ss);//ok
+        images[27]= resources.getDrawable(R.drawable.diego);
+        images[28]= resources.getDrawable(R.drawable.ronaldo);
        String isAnyConfiguration = mPrefs.getString("CONFIGURATION",null);
 
         if(isAnyConfiguration != null)
@@ -140,8 +156,17 @@ public class QuizActivity extends AppCompatActivity {
 
         if (mQuestionNumber < mQuestionLibrary.getLength() && mQuestionCount < maxQuestionsInGame) {
 
+            imageView.setImageDrawable(null);
+            imageView.getLayoutParams().height = 0;
+
             mQuestionNumber = generateRandomNumber();
 
+            if(mQuestionNumber>23)
+            {
+                imageView.setImageDrawable(images[mQuestionNumber]);
+                imageView.getLayoutParams().height = 300;
+                imageView.requestLayout();
+            }
 
             mQuestionView.setText(mQuestionLibrary.getQuestion(mQuestionNumber));
             mButtonChoice1.setText(mQuestionLibrary.getChoice(mQuestionNumber, 1));
